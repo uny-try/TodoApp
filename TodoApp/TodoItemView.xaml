@@ -2,11 +2,13 @@
 <ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:TodoApp"
     x:Class="TodoApp.TodoItemView">
 
+    <!-- 本体 -->
     <HorizontalStackLayout Padding="5">
-        <CheckBox IsChecked="{Binding IsCompleted}" />
-        <Label Text="{Binding Title}" />
+        <CheckBox IsChecked="{Binding IsCompleted}"/>
+        <Label Text="{Binding Title}"/>
     </HorizontalStackLayout>
 
 </ContentView>

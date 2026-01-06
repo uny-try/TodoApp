@@ -21,4 +21,13 @@ public partial class TodoViewModel : ObservableObject
             NewTodoTitle = string.Empty;
         }
     }
+
+    [RelayCommand]
+    private void DeleteTodoItem(TodoItem item)
+    {
+        if (TodoItems.Contains(item))
+        {
+            TodoItems.Remove(item);
+        }
+    }
 }

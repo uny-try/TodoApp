@@ -2,10 +2,11 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:TodoApp"
-    x:Class="TodoApp.MainPage">
+    x:Class="TodoApp.MainPage"
+    x:Name="TodoPage">
 
     <ContentPage.BindingContext>
-        <vm:TodoViewModel />
+        <vm:TodoViewModel/>
     </ContentPage.BindingContext>
 
     <VerticalStackLayout Padding="20">
@@ -14,20 +15,31 @@
         <HorizontalStackLayout>
             <Entry
                 Placeholder="新しいタスク"
-                Text="{Binding NewTodoTitle}" />
+                Text="{Binding NewTodoTitle}"/>
             <Button
                 Text="追加"
-                Command="{Binding AddTodoItemCommand}" />
+                Command="{Binding AddTodoItemCommand}"/>
         </HorizontalStackLayout>
 
         <!-- リスト表示 -->
         <CollectionView ItemsSource="{Binding TodoItems}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <vm:TodoItemView />
+                    <SwipeView>
+                        <!-- 右スワイプで削除 -->
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    Text="削除"
+                                    BackgroundColor="Red"
+                                    Command="{Binding Source={x:Reference TodoPage}, Path=BindingContext.DeleteTodoItemCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <vm:TodoItemView/>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
     </VerticalStackLayout>
 </ContentPage>
