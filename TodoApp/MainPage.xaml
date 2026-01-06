@@ -24,10 +24,7 @@
         <CollectionView ItemsSource="{Binding TodoItems}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <HorizontalStackLayout Padding="5">
-                        <CheckBox IsChecked="{Binding IsCompleted}" />
-                        <Label Text="{Binding Title}" />
-                    </HorizontalStackLayout>
+                    <vm:TodoItemView />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
